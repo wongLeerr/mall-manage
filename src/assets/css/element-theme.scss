@@ -1,16 +1,71 @@
-// 设置elemrnt-plus主题色，在main.ts中引入即可
-:root {
-  --el-color-primary: #ff6b35;
-  --el-color-primary-light-3: #ff834f;
-  --el-color-primary-dark-2: #e65a27;
+@use "element-plus/theme-chalk/src/mixins/function.scss" as *;
 
-  --el-color-success: #27ae60;
-  --el-color-warning: #f39c12;
-  --el-color-danger: #e74c3c;
-  --el-color-info: #3498db;
+// 覆盖主题变量
+@forward "element-plus/theme-chalk/src/common/var.scss" with (
+  $colors: (
+    "primary": (
+      "base": #ff6b35,
+    ),
+    "success": (
+      "base": #27ae60,
+    ),
+    "warning": (
+      "base": #f39c12,
+    ),
+    "danger": (
+      "base": #e74c3c,
+    ),
+    "info": (
+      "base": #3498db,
+    ),
+  ),
 
-  --el-bg-color: #f5f7fa;
-  --el-border-color: #e0e0e0;
-  --el-text-color-primary: #2c3e50;
-  --el-text-color-regular: #606266;
+  $link: (
+    "text-color": getCssVar("color-primary"),
+    "hover-text-color": getCssVar("color-primary", "light-3"),
+    "active-text-color": getCssVar("color-primary", "dark-2"),
+  ),
+  $switch: (
+    "on-color": getCssVar("color-primary"),
+  ),
+  $checkbox: (
+    "checked-bg-color": getCssVar("color-primary"),
+    "checked-input-border-color": getCssVar("color-primary"),
+  ),
+  $radio: (
+    "checked-icon-color": getCssVar("color-primary"),
+  ),
+  $slider: (
+    "main-bg-color": getCssVar("color-primary"),
+  ),
+  $pagination: (
+    "hover-color": getCssVar("color-primary"),
+  ),
+  $tabs: (
+    "active-color": getCssVar("color-primary"),
+  ),
+  $input: (
+    "focus-border-color": getCssVar("color-primary"),
+  ),
+  $select: (
+    "hover-border-color": getCssVar("color-primary"),
+    "input-focus-border-color": getCssVar("color-primary"),
+  ),
+  $menu: (
+    "active-color": getCssVar("color-primary"),
+    "hover-bg-color": getCssVar("color-primary", "light-9"),
+  )
+);
+
+@use "element-plus/theme-chalk/src/index.scss" as *;
+
+a {
+  color: var(--el-color-primary);
+}
+a:hover {
+  color: var(--el-color-primary-light-3);
+}
+::selection {
+  background: var(--el-color-primary);
+  color: #fff;
 }
